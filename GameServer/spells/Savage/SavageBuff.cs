@@ -20,7 +20,10 @@ namespace DOL.GS.Spells
         {
             if (Caster.Health < PowerCost(Caster))
             {
-                MessageToCaster(LanguageMgr.GetTranslation((Caster as GamePlayer).Client, "SavageEnduranceHeal.CheckBeginCast.InsufficientHealth"), eChatType.CT_SpellResisted);
+                if (Caster is GamePlayer)
+                {
+                    MessageToCaster(LanguageMgr.GetTranslation((Caster as GamePlayer).Client, "SavageEnduranceHeal.CheckBeginCast.InsufficientHealth"), eChatType.CT_SpellResisted);
+                }
                 return false;
             }
 

@@ -1545,7 +1545,7 @@ namespace DOL.GS.ServerRules
 				{
 					money.AddOwner(itemOwner.Owner);
 
-					if (itemOwner.Owner.TryAutoPickUpMoney(money))
+					if (itemOwner.Owner != null && itemOwner.Owner.TryAutoPickUpMoney(money))
 						return;
 				}
 
@@ -1592,7 +1592,7 @@ namespace DOL.GS.ServerRules
 				{
 					item.AddOwner(itemOwner.Owner);
 
-					if (itemOwner.Owner.TryAutoPickUpItem(item))
+					if (itemOwner.Owner != null && itemOwner.Owner.TryAutoPickUpItem(item))
 						return;
 				}
 

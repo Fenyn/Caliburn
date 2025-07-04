@@ -193,7 +193,7 @@ namespace DOL.AI.Brain
                 _brain.Body.Follow(_leader, _followDistance, 5000);
             }
 
-            if ((_leader.IsCasting || _leader.IsAttacking) && _leader.TargetObject is GameLiving livingTarget && _brain.CanAggroTarget(livingTarget))
+            if (_leader != null && ((_leader.IsCasting || _leader.IsAttacking) && _leader.TargetObject is GameLiving livingTarget && _brain.CanAggroTarget(livingTarget)))
             {
                 _brain.OnLeaderAggro();
                 _brain.AddToAggroList(livingTarget, 1);

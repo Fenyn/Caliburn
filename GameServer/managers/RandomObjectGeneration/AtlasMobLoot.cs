@@ -60,8 +60,16 @@ namespace DOL.GS {
                 int chance = BASE_ROG_CHANCE + ((killedcon < 0 ? killedcon + 1 : killedcon) * 3);
 
                 //chance = 100;
-                
-                BattleGroup bg = player.TempProperties.GetProperty<BattleGroup>(BattleGroup.BATTLEGROUP_PROPERTY);
+                BattleGroup bg = null;
+                if (player?.TempProperties != null)
+                {
+                    bg = player.TempProperties.GetProperty<BattleGroup>(BattleGroup.BATTLEGROUP_PROPERTY);
+                }
+
+                if (player == null)
+                {
+                    return loot;
+                }
 
                 if (bg != null)
                 {

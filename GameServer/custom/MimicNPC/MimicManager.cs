@@ -335,6 +335,17 @@ namespace DOL.GS.Scripts
         }
 
         private static List<MimicSpawner> _mimicSpawners;
+
+
+        public static List<MimicSpawnerPersistent> MimicSpawnersPersistent
+        {
+            get
+            {
+                return _mimicSpawnersPersistent ?? (_mimicSpawnersPersistent = new List<MimicSpawnerPersistent>());
+            }
+        }
+
+        private static List<MimicSpawnerPersistent> _mimicSpawnersPersistent;
     }
 
     #endregion Spawning

@@ -643,12 +643,20 @@ namespace DOL.GS
 
 		public bool TryAutoPickUpMoney(GameMoney money)
 		{
+            if (Leader is GameNPC)
+            {
+                return true;
+            }
 			return TryPickUpMoney((GamePlayer)Leader, money) is not IGameStaticItemOwner.TryPickUpResult.CANNOT_HANDLE;
 		}
 
 		public bool TryAutoPickUpItem(WorldInventoryItem inventoryItem)
 		{
 			// We don't care if players have auto loot enabled, or if they can see the item (the item isn't added to the world yet anyway), or who attacked last, etc.
+            if (Leader is GameNPC)
+            {
+                return true;
+            }
 			return TryPickUpItem((GamePlayer)Leader, inventoryItem) is not IGameStaticItemOwner.TryPickUpResult.CANNOT_HANDLE;
 		}
 
@@ -669,7 +677,10 @@ namespace DOL.GS
 
 			if (eligibleMembers.Count == 0)
 			{
-				source.Out.SendMessage(LanguageMgr.GetTranslation(source.Client.Account.Language, "GamePlayer.PickupObject.NoOneGroupWantsMoney"), eChatType.CT_System, eChatLoc.CL_SystemWindow);
+                if (source?.Client?.Account != null)
+                {
+                    source.Out.SendMessage(LanguageMgr.GetTranslation(source.Client.Account.Language, "GamePlayer.PickupObject.NoOneGroupWantsMoney"), eChatType.CT_System, eChatLoc.CL_SystemWindow);
+                }
 				return IGameStaticItemOwner.TryPickUpResult.FAILED;
 			}
 
@@ -715,7 +726,10 @@ namespace DOL.GS
 
 			if (eligibleMembers.Count == 0)
 			{
-				source.Out.SendMessage(LanguageMgr.GetTranslation(source.Client.Account.Language, "GamePlayer.PickupObject.NoOneWantsThis", item.Name), eChatType.CT_System, eChatLoc.CL_SystemWindow);
+                if (source?.Client?.Account != null)
+                {
+                    source.Out.SendMessage(LanguageMgr.GetTranslation(source.Client.Account.Language, "GamePlayer.PickupObject.NoOneWantsThis", item.Name), eChatType.CT_System, eChatLoc.CL_SystemWindow);
+                }
 				return IGameStaticItemOwner.TryPickUpResult.FAILED;
 			}
 

@@ -52,7 +52,12 @@ namespace DOL.GS.Scripts
         public MimicSpawner MimicSpawner 
         { 
             get { return _mimicSpawner; } 
-            set { _mimicSpawner = value; } 
+            set { _mimicSpawner = value; }
+        }
+        public MimicSpawnerPersistent MimicSpawnerPersistent
+        {
+            get;set;
+        
         }
 
         public IPacketLib Out { get { return _dummyLib; } }
@@ -1574,6 +1579,7 @@ namespace DOL.GS.Scripts
 
             Duel?.Stop();
             MimicSpawner?.Remove(this);
+            MimicSpawnerPersistent?.Remove(this);
 
             if (ControlledBrain != null)
                 CommandNpcRelease();
@@ -6889,6 +6895,7 @@ namespace DOL.GS.Scripts
 
             Duel?.Stop();
             MimicSpawner?.Remove(this);
+            MimicSpawnerPersistent?.Remove(this);
 
             eChatType messageType;
 
@@ -9211,12 +9218,12 @@ namespace DOL.GS.Scripts
 
         public IGameStaticItemOwner.TryPickUpResult TryPickUpMoney(IGamePlayer source, GameMoney money)
         {
-            throw new NotImplementedException();
+            return IGameStaticItemOwner.TryPickUpResult.SUCCESS;
         }
 
         public IGameStaticItemOwner.TryPickUpResult TryPickUpItem(IGamePlayer source, WorldInventoryItem item)
         {
-            throw new NotImplementedException();
+            return IGameStaticItemOwner.TryPickUpResult.SUCCESS;
         }
     }
 }
